@@ -1,4 +1,4 @@
-//Variable Definition
+//Global Variable Definition
 const form = document.getElementById('form');
 const table = document.getElementById('resultsTable');
 

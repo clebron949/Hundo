@@ -11,6 +11,10 @@ form.addEventListener('submit', formSubmit);
     const startValue = Number(document.getElementById("Start").value);
     const endValue = Number(document.getElementById("End").value);
     
+    if (InputErrorHandling(startValue,endValue)) {
+        return;
+    }
+
     removeAllChildNodes(table);
 
     for (let index = startValue; index <= endValue; index++){
@@ -38,6 +42,7 @@ form.addEventListener('submit', formSubmit);
     
     if (isEven(index)){
         newTd.classList.add("bg-light");
+        newTd.classList.add("fw-bold");
     }
     newRow.appendChild(newTd);
     table.appendChild(newRow);
@@ -46,5 +51,21 @@ form.addEventListener('submit', formSubmit);
   function removeAllChildNodes(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
+    }
+}
+
+function InputErrorHandling(firstNumber, lastNumber){
+    if (firstNumber === lastNumber){
+        swal("Error!", "Both input numbers are the same.", "error");
+        return true;
+    }
+
+    else if (firstNumber > lastNumber) {
+        swal("Range out of bounds!", "First input is greater than second input.", "error");
+        return true;
+    }
+
+    else{
+        return false;
     }
 }
